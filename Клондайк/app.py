@@ -29,18 +29,18 @@ while True:    # 游戏循环
     else:
         caozuo[x][y] = 'O'
 
-    directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (1, 1), (-1, 1), (1, -1)]
+    shuoming = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (1, 1), (-1, 1), (1, -1)]
     gameover = False          # 检查是否形成3个连续的标记（任意标记，不分玩家）
 
-    for dx, dy in directions:
-        count = 1  # 包含当前标记
+    for dx, dy in shuoming:
+        biaoji = 1  # 包含当前标记
 
         # 向一个方向检查连续标记
         for i in range(1, 3):  # 只检查连续的2个格子，总共3个标记
             nx = x + i * dx
             ny = y + i * dy
             if 0 <= nx < qipan and 0 <= ny < qipan and caozuo[nx][ny] != '.' and caozuo[nx][ny] != '.':
-                count += 1
+                biaoji += 1
             else:
                 break
 
@@ -52,11 +52,11 @@ while True:    # 游戏循环
                     0 <= ny < qipan and
                     caozuo[nx][ny] != '.' and
                     caozuo[nx][ny] != '.'):
-                count += 1
+                biaoji += 1
             else:
                 break
 
-        if count >= 3:  # 如果任意方向形成3个连续标记
+        if biaoji >= 3:  # 如果任意方向形成3个连续标记
             gameover = True
             break
 
